@@ -1,0 +1,120 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+struct Library
+{
+int bok_no;
+char bok_nm[20];
+char ath[50];
+char loc[60];
+int status;
+}l[3];
+
+ void issue();
+ void issue()
+ {int c;
+ char rep2;
+ cout<<"Enter Book Code:"<<endl;
+ cin>>c;
+ for(int i=0;i<3;i++)
+{ if(c==l[i].bok_no)
+ {cout<<"MATCH FOUND:"<<endl;
+   cout<<"\nBook Name:";
+  puts(l[i].bok_nm);
+  cout<<"\nBook Code:";
+  cout<<l[i].bok_no;
+  cout<<"\nEnter Author's Name:";
+  puts(l[i].ath);
+  cout<<"\nBook Locaton:";
+  puts(l[i].loc);
+ }
+ else
+ cout<<"No Match";
+
+ if(l[i].status==1)
+{ cout<<"\n Sorry Book is NOT Available";
+  break;}
+  else if(l[i].status==0)
+ { cout<<"Are You Sure(y/n):"<<endl;
+  cin>>rep2;
+  if(rep2=='y'||rep2=='Y')
+  l[i].status=1;
+  break;}
+}getch();
+}
+
+ void re();
+ void re()
+ {
+ int i;
+ char book[100];
+  cout<<"Enter BOOK NAME";
+  gets(book);
+  for( i=0;i<3;i++)
+ { i=strcmp(book,l[i].bok_nm);
+  if(i==0 && l[i].status==1)
+  {
+   cout<<"MATCH FOUND:"<<endl;
+      cout<<"\nBook Name:";
+  puts(l[i].bok_nm);
+  cout<<"\nBook Code:";
+  cout<<l[i].bok_no;
+  cout<<"\nEnter Author's Name:";
+  puts(l[i].ath);
+    cout<<"BOOK RETURNED SUCCESSFULLY"<<endl;
+  l[i].status=0;
+  break;
+  }
+  else
+ { cout<<"Invalid";
+ break;
+ }
+
+
+}
+
+  getch();
+  }
+
+
+
+void main()
+{ int res;
+ clrscr();
+  cout<<"BOOK DETAIL MENU:"<<endl;
+ for(int i=0;i<3;i++)
+ {
+  cout<<"BOOK"<<i+1<<endl;
+  cout<<"Book Name:";
+  gets(l[i].bok_nm);
+  cout<<"Book Code:";
+  cin>>l[i].bok_no;
+  cout<<"Enter Author's Name:";
+  gets(l[i].ath);
+  cout<<"Book Locaton:";
+  gets(l[i].loc);
+  cout<<"Issue Status";
+  cin>>l[i].status;
+  }
+
+  //MENU
+  menu:
+  clrscr();
+  cout<<"////////SPL Library Software//////"<<endl;
+  cout<<"1.Issue Book.\n2.Return Book.\n3.Exit"<<endl;
+  cin>>res;
+  if(res==1)
+  {issue();
+  goto menu;
+  }
+  else if(res==2)
+  {re();
+  goto menu;
+  }
+  else if(res==3)
+ { cout<<"HAVE A NICE DAY :)";
+  getch();  }
+  }
